@@ -1,13 +1,21 @@
-<html>
+<html></html>
     <!--
 Prompt the user to enter the weight of their baggage, and alert them if it exceeds the limit of 15kg.
     -->
     <head>
         <script>
+             let checkBaggageWeight = (weightValue)=>{
+                weightValue = Number(weightValue)
+                if (weightValue > 15){
+                    alert("Baggage weight exceeds maximum size allocated")
+                }
+            }
             let doIt= () => {
                 inputText=document.getElementById("userInput").value;
-                alert(Number(inputText)+1);
+                checkBaggageWeight(inputText)
+                //alert(Number(inputText)+1);
             }
+           
 
         </script>
     </head>
