@@ -10,10 +10,10 @@ The sum of these multiples is 23.
 3. Allow the user to enter the parameters via text box(es)
 and alert them to the output
 */
-alert("Loaded Euler JS");
-a=3;
-b=5;
-n=1000;
+// alert("Loaded Euler JS");
+// a=3;
+// b=5;
+// n=1000;
 
 function sumOfMultiples(a, b, n) {
     let sum = 0;
