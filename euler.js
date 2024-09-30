@@ -46,6 +46,8 @@ function calculateSum() {
         return;
     }
 
+    hideCalculateButtonId();
+
     const sum = sumOfMultiples(a, b, n);
     displayResult(sum, a, b, n);
 
@@ -76,4 +78,8 @@ function  styleResult() {
     document.styleSheets[0].insertRule('#result {padding: 10px;}', 0);
     document.styleSheets[0].insertRule('#result {border-radius: 5px;}', 0);
 
+}
+
+function hideCalculateButtonId() {
+    document.getElementById('calculateButton').style.display = 'none';
 }
