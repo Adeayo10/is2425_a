@@ -15,6 +15,16 @@ and alert them to the output
 // b=5;
 // n=1000;
 
+function sumOfMultiplesOfThreeAndFiveBelowHundred() {
+    let sum = 0;
+    for (let i = 0; i < n; i++) {
+        if (i % 3 === 0 || i % 5 === 0) {
+            sum += i;
+        }
+    }
+    return sum;
+}
+
 function sumOfMultiples(a, b, n) {
     let sum = 0;
     for (let i = 0; i < n; i++) {
@@ -26,6 +36,7 @@ function sumOfMultiples(a, b, n) {
 }
 
 function calculateSum() {
+
     const a = parseInt(document.getElementById('a').value);
     const b = parseInt(document.getElementById('b').value);
     const n = parseInt(document.getElementById('n').value);
@@ -35,7 +46,34 @@ function calculateSum() {
         return;
     }
 
-    const result = sumOfMultiples(a, b, n);
-    alert(`The sum of all multiples of ${a} or ${b} below ${n} is ${result}.`);
+    const sum = sumOfMultiples(a, b, n);
+    displayResult(sum, a, b, n);
+
 }
 
+function displayResult(sum, a, b, n) {
+    createParagraToDisplayResult();
+    styleResult();
+
+    document.getElementById('result').style.display = 'block';
+    let innerHTML = '';
+    innerHTML += `The sum of all multiples of ${a} and ${b} below ${n} is ${sum}`;
+    document.getElementById('result').innerHTML = innerHTML;
+
+}
+
+function createParagraToDisplayResult() {
+    const paragraph = document.createElement('p');
+    paragraph.id = 'result';
+    paragraph.style.display = 'none';
+    document.body.appendChild(paragraph)
+}
+
+function  styleResult() {
+    document.getElementById('result').style.display = 'none';
+    document.styleSheets[0].insertRule('#result {color: blue; font-size: 20px;}', 0);
+    document.styleSheets[0].insertRule('#result {background-color: lightgray;}', 0);
+    document.styleSheets[0].insertRule('#result {padding: 10px;}', 0);
+    document.styleSheets[0].insertRule('#result {border-radius: 5px;}', 0);
+
+}
