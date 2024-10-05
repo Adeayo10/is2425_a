@@ -14,8 +14,24 @@ and alert them to the output
 Demonstrate some DOM manipulation in the exercise.
 for example changing the value of a result div, hiding inputs once the button is clicked ...
 
+Arrays:
+a.
+Create a function which takes parameters a,b,l
+l is a list of integers
+find the sum of all the multiples of a or b in l
+b.
+Create a function which takes parameters a,l
+a is a list of two integers
+l is a list of integers
+find the sum of all the multiples of elements of a in l
+c.
+Create a function which takes parameters a,l
+a is a list of integers
+l is a list of integers
+find the sum of all the multiples of elements of a in l
 
 */
+
 alert("Loaded Euler JS");
 a=3;
 b=5;

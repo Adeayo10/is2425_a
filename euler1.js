@@ -83,3 +83,25 @@ function  styleResult() {
 function hideCalculateButtonId() {
     document.getElementById('calculateButton').style.display = 'none';
 }
+
+
+
+//Assessment  04/10/2024
+function sumOfMultiplesOfAOrB(a, b, l) {
+    return l.filter(number => number % a === 0 || number % b === 0)
+            .reduce((sum, num) => sum + num, 0);
+}
+
+
+function sumOfMultiplesOfElementsOfA(a, l) {
+    return l.filter(num => num % a[0] === 0 || num % a[1] === 0)
+            .reduce((sum, num) => sum + num, 0);
+}
+
+
+// create a conditon that keeps checking if the condition is met ehile we filter
+
+function sumOfMultiplesOfElementsOfAList(a, l) {
+    return l.filter(num => a.some(divisor => num % divisor === 0))
+            .reduce((sum, num) => sum + num, 0);
+}
