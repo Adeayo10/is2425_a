@@ -1,31 +1,27 @@
-/*If we list all the natural numbers below 10 that are multiples
-of 3 or 5, we get 3, 5, 6 and 9.
-The sum of these multiples is 23.
+// Assessment 04/10/2024
 
-1. Find the sum of all the multiples of 3 or 5 below 1000.
+const sumOfMultiplesOfAOrB = (a, b, l) => 
+    l.filter(number => number % a === 0 || number % b === 0)
+     .reduce((sum, num) => sum + num, 0);
 
-2. Create a function to find the sum of all the multiples of a or b below n.
-(a,b,n) are function parameters
+const sumOfMultiplesOfElementsOfA = (a, l) => 
+    l.filter(num => num % a[0] === 0 || num % a[1] === 0)
+     .reduce((sum, num) => sum + num, 0);
 
-3. Allow the user to enter the parameters via text box(es)
-and alert them to the output
-*/
-// alert("Loaded Euler JS");
-// a=3;
-// b=5;
-// n=1000;
+const sumOfMultiplesOfElementsOfAList = (a, l) => 
+    l.filter(num => a.some(divisor => num % divisor === 0))
+     .reduce((sum, num) => sum + num, 0);
 
-function sumOfMultiplesOfThreeAndFiveBelowHundred() {
+const sumOfMultiplesOfThreeAndFiveBelowHundred = () => {
     let sum = 0;
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < 100; i++) {
         if (i % 3 === 0 || i % 5 === 0) {
             sum += i;
         }
     }
     return sum;
-}
-
-function sumOfMultiples(a, b, n) {
+};
+const sumOfMultiples = (a, b, n) => {
     let sum = 0;
     for (let i = 0; i < n; i++) {
         if (i % a === 0 || i % b === 0) {
@@ -33,75 +29,85 @@ function sumOfMultiples(a, b, n) {
         }
     }
     return sum;
-}
+};
 
-function calculateSum() {
 
+const calculateSum = () => {
     const a = parseInt(document.getElementById('a').value);
     const b = parseInt(document.getElementById('b').value);
-    const n = parseInt(document.getElementById('n').value);
+    const l = document.getElementById('l').value.split(',').map(num => parseInt(num));
 
-    if (isNaN(a) || isNaN(b) || isNaN(n)) {
-        alert('Please enter valid numbers for a, b, and n.');
+    console.log(a, b, l);
+
+    if (isNaN(a) || isNaN(b) || l.length === 0) {
+        alert('Please enter valid numbers');
         return;
     }
 
-    hideCalculateButtonId();
+    hideCalculateButton('calculateButton');
 
-    const sum = sumOfMultiples(a, b, n);
-    displayResult(sum, a, b, n);
+    const sum = sumOfMultiplesOfAOrB(a, b, l);
+    displayResult(sum, a, b, l, 'form1');
+};
 
+const calculateSumOfElementsOfA = () => {
+    const a = document.getElementById('a1').value.split(',').map(num => parseInt(num));
+    const l = document.getElementById('l1').value.split(',').map(num => parseInt(num));
+    console.log(a, l);
+
+    if (a.length !== 2 || l.length === 0) {
+        alert('Please enter valid numbers');
+        return;
+    }
+
+    hideCalculateButton('calculateButtonElement');
+
+    const sum = sumOfMultiplesOfElementsOfA(a, l);
+    displayResult(sum, a, null, l, 'form2');
 }
+const calculateSumOfElementsOfAList = () => {
+    const a = document.getElementById('a3').value.split(',').map(num => parseInt(num));
+    const l = document.getElementById('l3').value.split(',').map(num => parseInt(num));
+    console.log(a, l);
 
-function displayResult(sum, a, b, n) {
-    createParagraToDisplayResult();
+    if (a.length === 0 || l.length === 0) {
+        alert('Please enter valid numbers');
+        return;
+    }
+
+    hideCalculateButton('calculateButtonElementList');
+
+    const sum = sumOfMultiplesOfElementsOfAList(a, l);
+    displayResult(sum, a, null, l, 'form3');
+};
+
+
+
+
+const displayResult = (sum, a, b, l,formid) => {
+    createParagraphToDisplayResult(formid);
     styleResult();
 
     document.getElementById('result').style.display = 'block';
-    let innerHTML = '';
-    innerHTML += `The sum of all multiples of ${a} and ${b} below ${n} is ${sum}`;
-    document.getElementById('result').innerHTML = innerHTML;
+    document.getElementById('result').innerHTML = 
+        `The sum of all multiples of ${a} and ${b} below [${l}] is ${sum}.`;
+};
 
-}
+const createParagraphToDisplayResult = (formId) => {
+const resultParagraph = document.createElement('p');
+resultParagraph.id = 'result';
+document.getElementById(formId).appendChild(resultParagraph);
 
-function createParagraToDisplayResult() {
-    const paragraph = document.createElement('p');
-    paragraph.id = 'result';
-    paragraph.style.display = 'none';
-    document.body.appendChild(paragraph)
-}
+};
 
-function  styleResult() {
-    document.getElementById('result').style.display = 'none';
-    document.styleSheets[0].insertRule('#result {color: blue; font-size: 20px;}', 0);
-    document.styleSheets[0].insertRule('#result {background-color: lightgray;}', 0);
-    document.styleSheets[0].insertRule('#result {padding: 10px;}', 0);
-    document.styleSheets[0].insertRule('#result {border-radius: 5px;}', 0);
+const styleResult = () => {
+    const styleSheet = document.styleSheets[0];
+    styleSheet.insertRule('#result {color: blue; font-size: 20px;}', 0);
+    styleSheet.insertRule('#result {background-color: lightgray;}', 0);
+    styleSheet.insertRule('#result {padding: 10px;}', 0);
+    styleSheet.insertRule('#result {border-radius: 5px;}', 0);
+};
 
-}
-
-function hideCalculateButtonId() {
-    document.getElementById('calculateButton').style.display = 'none';
-}
-
-
-
-//Assessment  04/10/2024
-function sumOfMultiplesOfAOrB(a, b, l) {
-    return l.filter(number => number % a === 0 || number % b === 0)
-            .reduce((sum, num) => sum + num, 0);
-}
-
-
-function sumOfMultiplesOfElementsOfA(a, l) {
-    return l.filter(num => num % a[0] === 0 || num % a[1] === 0)
-            .reduce((sum, num) => sum + num, 0);
-}
-
-
-// create a conditon that keeps checking if the condition is met ehile we filter
-
-function sumOfMultiplesOfElementsOfAList(a, l) {
-    return l.filter(num => a.some(divisor => num % divisor === 0))
-            .reduce((sum, num) => sum + num, 0);
-}
+const hideCalculateButton = (buttonId) => {
+    document.getElementById(buttonId).style.display = 'none';
+};
