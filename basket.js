@@ -1,14 +1,27 @@
-// create a function that takes two objects, basket and prices as parameteres where basket is a mapping from products
-// to quantities and prices is a mapping from products to prices. The function should return the total cost of the basket
-// as a number.
+/*
+Create a function that takes two objects,
+basket and prices as parameters
+where basket is a mapping from products (string) to quantities (number)
+and prices is a mapping from products(String) to prices (number)
+and returns the total cost of the basket
+*/
 
+let basket = {
+  "apple": 2,
+  "banana": 3,
+  "orange": 1
+};
 
-function calculateTotalCost(basket, prices) {
-    let totalCost = 0;
-    for (const product in basket) {
-        if (basket.hasOwnProperty(product) && prices.hasOwnProperty(product)) {
-            totalCost += basket[product] * prices[product];
-        }
-    }
-    return totalCost;
+let prices = {
+    "apple": 0.5,
+    "banana": 0.7,
+    "orange": 0.3
+    };
+
+function totlBasketCost(basket, prices) {
+  let total = 0;
+  for (let product in basket) {
+    total += basket[product] * prices[product];
+  }
+  return total;
 }
