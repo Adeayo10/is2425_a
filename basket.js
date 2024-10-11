@@ -3,8 +3,12 @@
 // as a number.
 
 
-let basketCost = (basket, prices) => {
-    return Object.keys(basket).reduce((total, product) => {
-        return total + (basket[product] * (prices[product] || 0));
-    }, 0);
+function calculateTotalCost(basket, prices) {
+    let totalCost = 0;
+    for (const product in basket) {
+        if (basket.hasOwnProperty(product) && prices.hasOwnProperty(product)) {
+            totalCost += basket[product] * prices[product];
+        }
     }
+    return totalCost;
+}
